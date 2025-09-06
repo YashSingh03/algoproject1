@@ -1,25 +1,69 @@
-# algoproject
+# 🎬 Movie Watchlist dApp on Algorand
 
-Welcome to your new AlgoKit project!
+Welcome to the **Movie Watchlist dApp** — a simple decentralized application built on the **Algorand blockchain** that lets you keep track of movies you want to watch. This project is beginner-friendly and built using TypeScript smart contracts for Algorand.
 
-This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
+---
 
-By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
+## 📖 Project Description
 
-## Getting Started
+This dApp allows users to add movies to a shared watchlist on-chain. Whether you're tracking new releases or classic favorites, this decentralized watchlist ensures that your movie interests are stored securely and immutably on the Algorand blockchain.
 
-To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
+Built using:
 
-To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
+- 🧠 **Algorand Smart Contracts (ASC1)**
+- 💻 **TypeScript SDK**
+- ⚙️ **Global State Management**
 
-### GitHub Codespaces
+---
 
-To get started execute:
+## ✅ What It Does
 
-1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
-2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
+- Adds a movie title and description to the global watchlist.
+- Stores the full watchlist on-chain (as a single string).
+- Lets users view the complete watchlist anytime.
 
-Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).
+This is perfect for learning how to interact with global state on Algorand using TypeScript.
+
+---
+
+## ✨ Features
+
+- 📌 **Add Movies** – Input a title and description to grow the shared watchlist.
+- 📃 **View Watchlist** – Instantly retrieve all movies in the list.
+- 🛠️ **Simple Contract Logic** – Beginner-friendly smart contract design.
+- 🛡️ **Immutable Storage** – Watchlist entries are stored securely on-chain.
+
+---
+
+## 🔗 Deployed Smart Contract
+
+> 🛰️ **Deployed App ID**: `XXX`  
+> 🔗 **Deployed Contract Link**: [View on AlgoExplorer](https://testnet.algoexplorer.io/application/XXX)
+
+---
+
+## 🧠 Smart Contract Code: NY4CN42OIARGGR5TN7RBKQTQP5KLJIJUQUU5FFFI3RTR74NCDRKF55THPM
+
+```ts
+// paste your code
+import { Contract, GlobalState } from '@algorandfoundation/algorand-typescript'
+
+export class HelloWorld extends Contract {
+  watchlist = GlobalState<string>({ key: "watchlist", initialValue: "" });
+
+  // Add a movie to the watchlist
+  AddMovie(title: string, description: string): string {
+    // Format: Title (Year): Description;
+    const entry = `${title}: ${description}; `;
+    this.watchlist.value = this.watchlist.value + entry;
+    return title;
+  }
+
+  // View the full watchlist
+  GetWatchlist(): string {
+    return this.watchlist.value;
+  }
+}
 
 ![](pic1.png)
 ![](pic2.png)
