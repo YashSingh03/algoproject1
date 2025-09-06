@@ -45,5 +45,4 @@ This is perfect for learning how to interact with global state on Algorand using
 ## 🧠 Smart Contract Code: NY4CN42OIARGGR5TN7RBKQTQP5KLJIJUQUU5FFFI3RTR74NCDRKF55THPM
 
 ![](pic1.png)
-
 ![](pic2.png)
